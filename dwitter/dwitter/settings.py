@@ -126,10 +126,21 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Media URLS
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_URL = "static/"
+STATICFILES_DIRS= [os.path.join(BASE_DIR,'static')]
 
-# Statis URLS
-STATIC_URL = 'static/'
-STATIC_ROOT = [os.path.join(BASE_DIR, 'static')]
+MEDIA_URL = "/media/"
+MEDIA_ROOT= os.path.join(BASE_DIR,'media')
+
+LOGIN_URL = '/accounts/login' #this one just stating, not changing or declaring 
+
+LOGIN_REDIRECT_URL = '/tweet/'
+LOGOUT_REDIRECT_URL = '/tweet/'
+
+# IMP INFO ON ADDRESSING SYMBOLISM
+#  "/tweet" would mean absolute path -> 127.0.0.1/tweet
+#  "tweet/" means relative to current address , so if current address is 127.0.0.1/account/login , we'll get 127.0.0.1/account/login /tweet
+#  '/tweet/' is also for absolute path but has a trailing slash at end, means it shows its not endfile (interpreted so when "/tweet"), and just a continuing directory
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"

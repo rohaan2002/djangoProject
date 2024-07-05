@@ -1,0 +1,39 @@
+
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock title %}
+
+{% block content %}
+<h1 class='text-center mt-4'>
+    Here are the latest tweets:
+</h1>
+
+<a class='btn btn-primary' href="{% url "create_tweet" %}">
+    Create Tweet
+</a>
+
+<div class='container row gap-4 mt-4'>
+        {% for tweet in tweets %}
+        <div class="card p-3 m-2" style="width: 18rem;">
+            <img style="height: 20rem" src="{{tweet.photo.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{tweet.user.username}}</h5>
+              <p class="card-text">{{tweet.text}}</p>
+
+                {%if tweet.user == user%}
+                {% comment %} 'user'  kyuki request ka part h (builtin) to use kahi bhi use krskte h bina reference {% endcomment %}
+              <a href="{% url 'edit_tweet' tweet.id %}" class="btn btn-primary">Edit Tweet</a>
+              <a href="{% url 'delete_tweet' tweet.id %}" class="btn btn-danger">Delete Tweet</a>
+                {%endif%}
+
+            </div>
+          </div>
+        {% endfor %}
+</div>
+
+{% endblock content %}
+
+

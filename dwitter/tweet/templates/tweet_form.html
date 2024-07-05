@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block content %}
+<h1 class='text-center mt-4'>
+    Heading
+</h1>
+<h2>
+    {% if form.instance.pk %}  
+    Edit Tweet
+    {% else %}
+    Create Tweet
+    {% endif %}
+
+    {% comment %} 
+    agr form jo bheja gya h view se usme pk (primary key) h, mtlb wo ek existing tweet h or for tweet_form pe edit_tweet ke thru hi aya h (see views)
+    else wo create_tweet ke thru aya <h1></h1>
+    {% endcomment %}
+    <form method="POST" class="form" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{form.as_p}}
+        <button class="btn btn-warning" type="submit">Submit</button>
+    </form>
+
+    <a href="{% url "tweet_list" %}">Back to tweet list</a>
+
+</h2>
+
+{% endblock content %}
